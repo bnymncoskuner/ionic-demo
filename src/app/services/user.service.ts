@@ -6,9 +6,21 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class UserService {
 
+  self;
+
   constructor(private db: AngularFirestore) { }
 
   register(name: string) {
-    this.db.collection('users').add({name});
+    return this.db.collection('users').add({name}).then(result => {
+      this.self = {
+        name: name,
+        id: result.id
+      };
+      return result;
+    });
+  }
+
+  getUsers() {
+    return this.db.collection('users').valueChanges();
   }
 }

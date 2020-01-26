@@ -1,39 +1,22 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab One
+      Messages
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content #content [scrollEvents]="true">
   <ion-list lines="none">
-    <ion-item>
-      <ion-label>Pokémon Yellow</ion-label>
-    </ion-item>
-    <ion-item class="ion-text-end">
-      <ion-label>Mega Man X</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>The Legend of Zelda</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Pac-Man</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Super Mario World</ion-label>
+    <ion-item *ngFor="let item of items | async; let i = index">
+      <ion-label>
+        <app-message [message]="item" [self]="i === 1"></app-message>
+      </ion-label>
     </ion-item>
   </ion-list>
-
-  <ul>
-    <li class="text" *ngFor="let item of items | async">
-      {{item.text}}
-    </li>
-  </ul>
-
-  <ion-footer>
-    <ion-item>
-      <ion-input placeholder="Type something"></ion-input>
-    </ion-item>
-  </ion-footer>
 </ion-content>
+
+<ion-item lines="none">
+  <ion-input [(ngModel)]="message" placeholder="Type something"></ion-input>
+  <ion-icon name="send" slot="end" (click)="sendMessage()"></ion-icon>
+</ion-item>

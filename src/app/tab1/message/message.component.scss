@@ -1,0 +1,29 @@
+.message {
+  background-color: white;
+  float: left;
+  padding: 5px;
+  border-radius: 7.5px;
+  min-width: 110px;
+  &.self {
+    background-color: #dcf8c6;
+    border-top-right-radius: 0;
+    float: right;
+  }
+  &:not(.self) {
+    border-top-left-radius: 0;
+  }
+  .sender {
+    color: #74cff8;
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+  .text {
+    margin-bottom: 10px;
+  }
+  .time {
+    color: rgba(0, 0, 0, .45);
+    font-size: 11px;
+    float: right;
+  }
+}
